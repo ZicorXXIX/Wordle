@@ -7,6 +7,8 @@ import GuessResults from '../GuessResults';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 import WonBanner from '../WonBanner/WonBanner';
 import LoseBanner from '../LoseBanner/LoseBanner';
+import Keyboard from '../Keyboard/Keyboard';
+import { checkGuess } from '../../game-helpers';
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -16,6 +18,8 @@ console.info({ answer });
 function Game() {
   const [guesses, setGuesses] = React.useState([]);
   const [gameState, setGameState] = React.useState('running');
+
+  const validatedGuesses = guesses.map(guess => checkGuess(guess, answer));
   function handleSubmitGuess(guess) {
     const nextGuess = [...guesses, guess];
     setGuesses(nextGuess);
@@ -31,6 +35,7 @@ function Game() {
       <GuessInput gameState={gameState} handleSubmitGuess={handleSubmitGuess} />
       {gameState === 'won' && <WonBanner numOfGuesses={guesses.length} />}
       {gameState === 'lose' && <LoseBanner answer={answer} />}
+      <Keyboard validatedGuesses={validatedGuesses} />
     </>
   );
 }
