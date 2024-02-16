@@ -44,10 +44,6 @@ Here's a GIF showing the initial state of the game:
 
 ![Initial Game State](./docs/wordle-demo.gif)
 
-And here's another GIF demonstrating a correct guess:
-
-![Correct Guess](./docs/happy-banner.png)
-
 ## Contributing
 
 Feel free to fork the repository and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
